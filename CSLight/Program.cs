@@ -6,16 +6,19 @@ namespace CSLight
     {
         static void Main(string[] args)
         {
-            float weight = 85.3f;
-            double priceBook = 152.56;
-            bool isCheck = true;
-            String fullName = "Иванов Петр Сергеевич";
-            char firstLetterAlphabet = 'А';
-            uint age = 30;
-            byte countHands = 2;
-            long distanceToSun = 149600000;
-            int nitrogenTemperature = -196;
-            short daysInYear = 365;
+            String name;
+            String zodiacSign;
+            int age;
+            String workPlace;
+            Console.Write("Как вас зовут: ");
+            name = Console.ReadLine();
+            Console.Write("Какой ваш знак зодиака: ");
+            zodiacSign = Console.ReadLine();
+            Console.Write("Сколько вам лет: ");
+            age = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Где вы работаете: ");
+            workPlace = Console.ReadLine();
+            Console.WriteLine($"Вас зовут {name}, вам {age} год, вы {zodiacSign} и работаете на {workPlace}.");
         }
     }
 }
