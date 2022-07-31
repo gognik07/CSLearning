@@ -9,9 +9,9 @@ namespace CSLight
             String firstName = "Иванов";
             String lastName = "Петр";
             Console.WriteLine($"Было: Имя - {firstName}, Фамилия - {lastName}");
-            String currentlyStorageForName = firstName;
+            String currentlyStorageForLastName = firstName;
             firstName = lastName;
-            lastName = currentlyStorageForName;
+            lastName = currentlyStorageForLastName;
             Console.WriteLine($"Стало: Имя - {firstName}, Фамилия - {lastName}");
         }
     }
