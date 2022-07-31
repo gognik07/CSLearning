@@ -10,9 +10,10 @@ namespace CSLight
             int countPatients = Convert.ToInt32(Console.ReadLine());
             int patientAppointmentTime = 10;
             int countMinutesInHour = 60;
+            int hoursInQueue = patientAppointmentTime * countPatients / countMinutesInHour;
+            int minutesInQueue = patientAppointmentTime * countPatients % countMinutesInHour;
             Console.WriteLine($"Вы должны отстоять в очереди" +
-                $" {patientAppointmentTime * countPatients / countMinutesInHour} часа " +
-                $"{patientAppointmentTime * countPatients % countMinutesInHour} минут");
+                $" {hoursInQueue} часа {minutesInQueue} минут");
         }
     }
 }
