@@ -6,10 +6,10 @@ namespace CSLight
     {
         static void Main(string[] args)
         {
-            String firstName = "Иванов";
-            String lastName = "Петр";
+            string firstName = "Иванов";
+            string lastName = "Петр";
             Console.WriteLine($"Было: Имя - {firstName}, Фамилия - {lastName}");
-            String currentlyStorageForLastName = firstName;
+            string currentlyStorageForLastName = firstName;
             firstName = lastName;
             lastName = currentlyStorageForLastName;
             Console.WriteLine($"Стало: Имя - {firstName}, Фамилия - {lastName}");
