@@ -12,7 +12,6 @@ namespace CSLight
             Console.Write($"Один кристал стоит {cristalPrice}. Сколько кристалов вы хотите купить: ");
             int countCristals = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine($"У вас есть {countCristals} кристалов и {gold - countCristals * cristalPrice} золота!");
-
         }
     }
 }
