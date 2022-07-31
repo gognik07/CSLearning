@@ -6,16 +6,13 @@ namespace CSLight
     {
         static void Main(string[] args)
         {
-            float weight = 85.3f;
-            double priceBook = 152.56;
-            bool isCheck = true;
-            String fullName = "Иванов Петр Сергеевич";
-            char firstLetterAlphabet = 'А';
-            uint age = 30;
-            byte countHands = 2;
-            long distanceToSun = 149600000;
-            int nitrogenTemperature = -196;
-            short daysInYear = 365;
+            Console.Write("Введите кол-во старушек: ");
+            int countPatients = Convert.ToInt32(Console.ReadLine());
+            int patientAppointmentTime = 10;
+            int countMinutesInHour = 60;
+            Console.WriteLine($"Вы должны отстоять в очереди" +
+                $" {patientAppointmentTime * countPatients / countMinutesInHour} часа " +
+                $"{patientAppointmentTime * countPatients % countMinutesInHour} минут");
         }
     }
 }
