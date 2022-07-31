@@ -6,16 +6,13 @@ namespace CSLight
     {
         static void Main(string[] args)
         {
-            float weight = 85.3f;
-            double priceBook = 152.56;
-            bool isCheck = true;
-            String fullName = "Иванов Петр Сергеевич";
-            char firstLetterAlphabet = 'А';
-            uint age = 30;
-            byte countHands = 2;
-            long distanceToSun = 149600000;
-            int nitrogenTemperature = -196;
-            short daysInYear = 365;
+            int cristalPrice = 10;
+            Console.Write("Сколько у вас золота: ");
+            int gold = Convert.ToInt32(Console.ReadLine());
+            Console.Write($"Один кристал стоит {cristalPrice}. Сколько кристалов вы хотите купить: ");
+            int countCristals = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine($"У вас есть {countCristals} кристалов и {gold - countCristals * cristalPrice} золота!");
+
         }
     }
 }
