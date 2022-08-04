@@ -6,17 +6,13 @@ namespace CSLight
     {
         static void Main(string[] args)
         {
-            string command;
+            string command = "start";
 
-            while(true)
+            while(command.ToLower() != "exit")
             {
-                Console.Write("Введите команду: ");
-                command = Console.ReadLine();
                 Console.WriteLine($"Выполняется команда {command}...");
-                if (command == "exit")
-                {
-                    break;
-                }
+                Console.Write("Введите команду: ");
+                command = Console.ReadLine();               
             }
 
             Console.WriteLine("До свидания!");
