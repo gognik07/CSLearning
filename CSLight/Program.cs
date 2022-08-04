@@ -6,16 +6,18 @@ namespace CSLight
     {
         static void Main(string[] args)
         {
-            float weight = 85.3f;
-            double priceBook = 152.56;
-            bool isCheck = true;
-            String fullName = "Иванов Петр Сергеевич";
-            char firstLetterAlphabet = 'А';
-            uint age = 30;
-            byte countHands = 2;
-            long distanceToSun = 149600000;
-            int nitrogenTemperature = -196;
-            short daysInYear = 365;
+            string message;
+            int countRepetitions;
+
+            Console.Write("Введите дублируемое сообщение: ");
+            message = Console.ReadLine();
+            Console.Write("Введите количесво повторений: ");
+            countRepetitions = Convert.ToInt32(Console.ReadLine());
+
+            for(int i = 0; i < countRepetitions; i++)
+            {
+                Console.WriteLine(message);
+            }
         }
     }
 }
