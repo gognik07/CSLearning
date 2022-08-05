@@ -15,10 +15,11 @@ namespace CSLight
             int rubToUsd = 70;
             int rubToEuro = 140;
             int usdToEuro = 2;
-            int numberCommand = -1;
+            int numberCommand;
+            bool isFinishedWork = false;
 
             Console.WriteLine("Добро пожаловать в обменник!");
-            while(numberCommand != 0)
+            while(!isFinishedWork)
             {
                 Console.WriteLine($"\nУ вас есть {countRub} рублей, {countUsd} долларов, {countEuro} евро");
                 Console.WriteLine("0 - Выход из программы\n" +
@@ -32,40 +33,45 @@ namespace CSLight
                 numberCommand = Convert.ToInt32(Console.ReadLine());
                 if (numberCommand == 0)
                 {
+                    isFinishedWork = true;
                     continue;
                 }
-                Console.Write("Введите количество покупаемой валюты: ");
-                int countBuyingCurrency = Convert.ToInt32(Console.ReadLine());
-                switch(numberCommand)
+                else
                 {
-                    case 1:
-                        countRub -= countBuyingCurrency * rubToUsd;
-                        countUsd += countBuyingCurrency;
-                        break;
-                    case 2:
-                        countRub -= countBuyingCurrency * rubToEuro;
-                        countEuro += countBuyingCurrency;
-                        break;
-                    case 3:
-                        countUsd -= Convert.ToSingle(countBuyingCurrency)/rubToUsd;
-                        countRub += countBuyingCurrency;
-                        break;
-                    case 4:
-                        countUsd -= countBuyingCurrency * usdToEuro;
-                        countEuro += countBuyingCurrency;
-                        break;
-                    case 5:
-                        countEuro -= Convert.ToSingle(countBuyingCurrency) / rubToEuro;
-                        countRub += countBuyingCurrency;
-                        break;
-                    case 6:
-                        countEuro -= Convert.ToSingle(countBuyingCurrency) / usdToEuro;
-                        countUsd += countBuyingCurrency;
-                        break;
-                    default:
-                        Console.WriteLine("Такой команды не существует");
-                        break;
+                    Console.Write("Введите количество покупаемой валюты: ");
+                    int countBuyingCurrency = Convert.ToInt32(Console.ReadLine());
+                    switch (numberCommand)
+                    {
+                        case 1:
+                            countRub -= countBuyingCurrency * rubToUsd;
+                            countUsd += countBuyingCurrency;
+                            break;
+                        case 2:
+                            countRub -= countBuyingCurrency * rubToEuro;
+                            countEuro += countBuyingCurrency;
+                            break;
+                        case 3:
+                            countUsd -= Convert.ToSingle(countBuyingCurrency) / rubToUsd;
+                            countRub += countBuyingCurrency;
+                            break;
+                        case 4:
+                            countUsd -= countBuyingCurrency * usdToEuro;
+                            countEuro += countBuyingCurrency;
+                            break;
+                        case 5:
+                            countEuro -= Convert.ToSingle(countBuyingCurrency) / rubToEuro;
+                            countRub += countBuyingCurrency;
+                            break;
+                        case 6:
+                            countEuro -= Convert.ToSingle(countBuyingCurrency) / usdToEuro;
+                            countUsd += countBuyingCurrency;
+                            break;
+                        default:
+                            Console.WriteLine("Такой команды не существует");
+                            break;
+                    }
                 }
+                
             }
         }
     }
