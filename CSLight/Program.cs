@@ -20,7 +20,6 @@ namespace CSLight
             float eurToUsd = 1 / usdToEur;
             string numberCommand;
             int countBuyingCurrency;
-            bool isCompletedCommand;
             bool isFinishedWork = false;
 
             Console.WriteLine("Добро пожаловать в обменник!");
@@ -45,44 +44,80 @@ namespace CSLight
                     case "1":
                         Console.Write("Введите количество покупаемой валюты: ");
                         countBuyingCurrency = Convert.ToInt32(Console.ReadLine());
-                        isCompletedCommand = countRub >= countBuyingCurrency * rubToUsd;
-                        countRub -= countBuyingCurrency * rubToUsd * Convert.ToInt32(isCompletedCommand);
-                        countUsd += countBuyingCurrency * Convert.ToInt32(isCompletedCommand);
+                        if (countRub >= countBuyingCurrency * rubToUsd)
+                        {
+                            countRub -= countBuyingCurrency * rubToUsd;
+                            countUsd += countBuyingCurrency;
+                        }
+                        else
+                        {
+                            Console.WriteLine("У вас не хватает денег!");
+                        }
                         break;
                     case "2":
                         Console.Write("Введите количество покупаемой валюты: ");
                         countBuyingCurrency = Convert.ToInt32(Console.ReadLine());
-                        isCompletedCommand = countRub >= countBuyingCurrency * rubToEur;
-                        countRub -= countBuyingCurrency * rubToEur * Convert.ToInt32(isCompletedCommand);
-                        countEur += countBuyingCurrency * Convert.ToInt32(isCompletedCommand);
+                        if (countRub >= countBuyingCurrency * rubToEur)
+                        {
+                            countRub -= countBuyingCurrency * rubToEur;
+                            countEur += countBuyingCurrency;
+                        }
+                        else
+                        {
+                            Console.WriteLine("У вас не хватает денег!");
+                        }
                         break;
                     case "3":
                         Console.Write("Введите количество покупаемой валюты: ");
                         countBuyingCurrency = Convert.ToInt32(Console.ReadLine());
-                        isCompletedCommand = countUsd >= countBuyingCurrency * usdToRub;
-                        countUsd -= countBuyingCurrency * usdToRub * Convert.ToInt32(isCompletedCommand);
-                        countRub += countBuyingCurrency * Convert.ToInt32(isCompletedCommand);
+                        if (countUsd >= countBuyingCurrency * usdToRub)
+                        {
+                            countUsd -= countBuyingCurrency * usdToRub;
+                            countRub += countBuyingCurrency;
+                        }
+                        else
+                        {
+                            Console.WriteLine("У вас не хватает денег!");
+                        }
                         break;
                     case "4":
                         Console.Write("Введите количество покупаемой валюты: ");
                         countBuyingCurrency = Convert.ToInt32(Console.ReadLine());
-                        isCompletedCommand = countUsd >= countBuyingCurrency * usdToEur; 
-                        countUsd -= countBuyingCurrency * usdToEur * Convert.ToInt32(isCompletedCommand);
-                        countEur += countBuyingCurrency * Convert.ToInt32(isCompletedCommand);
+                        if (countUsd >= countBuyingCurrency * usdToEur)
+                        {
+                            countUsd -= countBuyingCurrency * usdToEur;
+                            countEur += countBuyingCurrency;
+                        }
+                        else
+                        {
+                            Console.WriteLine("У вас не хватает денег!");
+                        }
                         break;
                     case "5":
                         Console.Write("Введите количество покупаемой валюты: ");
                         countBuyingCurrency = Convert.ToInt32(Console.ReadLine());
-                        isCompletedCommand = countEur >= countBuyingCurrency * eurToRub; 
-                        countEur -= countBuyingCurrency * eurToRub * Convert.ToInt32(isCompletedCommand);
-                        countRub += countBuyingCurrency * Convert.ToInt32(isCompletedCommand);
+                        if (countEur >= countBuyingCurrency * eurToRub)
+                        {
+                            countEur -= countBuyingCurrency * eurToRub;
+                            countRub += countBuyingCurrency;
+                        }
+                        else
+                        {
+                            Console.WriteLine("У вас не хватает денег!");
+                        }
                         break;
                     case "6":
                         Console.Write("Введите количество покупаемой валюты: ");
                         countBuyingCurrency = Convert.ToInt32(Console.ReadLine());
-                        isCompletedCommand = countEur >= countBuyingCurrency * eurToUsd;
-                        countEur -= countBuyingCurrency * eurToUsd * Convert.ToInt32(isCompletedCommand);
-                        countUsd += countBuyingCurrency * Convert.ToInt32(isCompletedCommand);
+                        if (countEur >= countBuyingCurrency * eurToUsd)
+                        {
+                            countEur -= countBuyingCurrency;
+                            countUsd += countBuyingCurrency;
+                        }
+                        else
+                        {
+                            Console.WriteLine("У вас не хватает денег!");
+                        }
                         break;
                     default:
                         Console.WriteLine("Такой команды не существует");
