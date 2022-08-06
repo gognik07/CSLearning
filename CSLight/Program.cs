@@ -12,14 +12,17 @@ namespace CSLight
             float countUsd = Convert.ToSingle(Console.ReadLine());
             Console.Write("Сколько у вас евро: ");
             float countEuro = Convert.ToSingle(Console.ReadLine());
-            int rubToUsd = 70;
-            int rubToEuro = 140;
-            int usdToEuro = 2;
-            int numberCommand;
+            float rubToUsd = 70;
+            float usdToRub = 1 / rubToUsd;
+            float rubToEuro = 140;
+            float euroToRub = 1 / rubToEuro;
+            float usdToEuro = 2;
+            float euroToUsd = 1 / usdToEuro;
+            float numberCommand;
             bool isFinishedWork = false;
 
             Console.WriteLine("Добро пожаловать в обменник!");
-            while(!isFinishedWork)
+            while(isFinishedWork == false)
             {
                 Console.WriteLine($"\nУ вас есть {countRub} рублей, {countUsd} долларов, {countEuro} евро");
                 Console.WriteLine("0 - Выход из программы\n" +
@@ -34,7 +37,6 @@ namespace CSLight
                 if (numberCommand == 0)
                 {
                     isFinishedWork = true;
-                    continue;
                 }
                 else
                 {
@@ -51,7 +53,7 @@ namespace CSLight
                             countEuro += countBuyingCurrency;
                             break;
                         case 3:
-                            countUsd -= Convert.ToSingle(countBuyingCurrency) / rubToUsd;
+                            countUsd -= Convert.ToSingle(countBuyingCurrency) * usdToRub;
                             countRub += countBuyingCurrency;
                             break;
                         case 4:
@@ -59,11 +61,11 @@ namespace CSLight
                             countEuro += countBuyingCurrency;
                             break;
                         case 5:
-                            countEuro -= Convert.ToSingle(countBuyingCurrency) / rubToEuro;
+                            countEuro -= Convert.ToSingle(countBuyingCurrency) * euroToRub;
                             countRub += countBuyingCurrency;
                             break;
                         case 6:
-                            countEuro -= Convert.ToSingle(countBuyingCurrency) / usdToEuro;
+                            countEuro -= Convert.ToSingle(countBuyingCurrency) * euroToUsd;
                             countUsd += countBuyingCurrency;
                             break;
                         default:
@@ -71,7 +73,6 @@ namespace CSLight
                             break;
                     }
                 }
-                
             }
         }
     }
