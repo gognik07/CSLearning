@@ -12,16 +12,15 @@ namespace CSLight
             char characterOutline = Convert.ToChar(Console.ReadLine());
 
             string nameWithFrame = characterOutline + name + characterOutline;
+            string outline = "";
             for(int i = 0; i < nameWithFrame.Length; i++)
             {
-                Console.Write(characterOutline);
+                outline += characterOutline;
             }
-            Console.WriteLine();
-            Console.WriteLine(characterOutline + name + characterOutline);
-            for (int i = 0; i < nameWithFrame.Length; i++)
-            {
-                Console.Write(characterOutline);
-            }
+
+            Console.WriteLine(outline);
+            Console.WriteLine(nameWithFrame);
+            Console.WriteLine(outline);
         }
     }
 }
