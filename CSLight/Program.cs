@@ -11,20 +11,23 @@ namespace CSLight
             Console.Write("Сколько у вас долларов: ");
             float countUsd = Convert.ToSingle(Console.ReadLine());
             Console.Write("Сколько у вас евро: ");
-            float countEuro = Convert.ToSingle(Console.ReadLine());
+            float countEur = Convert.ToSingle(Console.ReadLine());
             float rubToUsd = 70;
             float usdToRub = 1 / rubToUsd;
-            float rubToEuro = 140;
-            float euroToRub = 1 / rubToEuro;
-            float usdToEuro = 2;
-            float euroToUsd = 1 / usdToEuro;
-            float numberCommand;
+            float rubToEur = 140;
+            float eurToRub = 1 / rubToEur;
+            float usdToEur = 2;
+            float eurToUsd = 1 / usdToEur;
+            string numberCommand;
+            int countBuyingCurrency;
+            bool isCompletedCommand;
             bool isFinishedWork = false;
 
             Console.WriteLine("Добро пожаловать в обменник!");
-            while(isFinishedWork == false)
+
+            while (isFinishedWork == false)
             {
-                Console.WriteLine($"\nУ вас есть {countRub} рублей, {countUsd} долларов, {countEuro} евро");
+                Console.WriteLine($"\nУ вас есть {countRub} рублей, {countUsd} долларов, {countEur} евро");
                 Console.WriteLine("0 - Выход из программы\n" +
                     "1 - конвертация рублей в доллары\n" +
                     "2 - конвертация рублей в евро\n" +
@@ -33,45 +36,57 @@ namespace CSLight
                     "5 - конвертация евро в рубли\n" +
                     "6 - конвертация евро в доллары");
                 Console.Write("Выберите желаемое действие: ");
-                numberCommand = Convert.ToInt32(Console.ReadLine());
-                if (numberCommand == 0)
+                numberCommand = Console.ReadLine();
+                switch (numberCommand)
                 {
-                    isFinishedWork = true;
-                }
-                else
-                {
-                    Console.Write("Введите количество покупаемой валюты: ");
-                    int countBuyingCurrency = Convert.ToInt32(Console.ReadLine());
-                    switch (numberCommand)
-                    {
-                        case 1:
-                            countRub -= countBuyingCurrency * rubToUsd;
-                            countUsd += countBuyingCurrency;
-                            break;
-                        case 2:
-                            countRub -= countBuyingCurrency * rubToEuro;
-                            countEuro += countBuyingCurrency;
-                            break;
-                        case 3:
-                            countUsd -= Convert.ToSingle(countBuyingCurrency) * usdToRub;
-                            countRub += countBuyingCurrency;
-                            break;
-                        case 4:
-                            countUsd -= countBuyingCurrency * usdToEuro;
-                            countEuro += countBuyingCurrency;
-                            break;
-                        case 5:
-                            countEuro -= Convert.ToSingle(countBuyingCurrency) * euroToRub;
-                            countRub += countBuyingCurrency;
-                            break;
-                        case 6:
-                            countEuro -= Convert.ToSingle(countBuyingCurrency) * euroToUsd;
-                            countUsd += countBuyingCurrency;
-                            break;
-                        default:
-                            Console.WriteLine("Такой команды не существует");
-                            break;
-                    }
+                    case "0":
+                        isFinishedWork = true;
+                        break;
+                    case "1":
+                        Console.Write("Введите количество покупаемой валюты: ");
+                        countBuyingCurrency = Convert.ToInt32(Console.ReadLine());
+                        isCompletedCommand = countRub >= countBuyingCurrency * rubToUsd;
+                        countRub -= countBuyingCurrency * rubToUsd * Convert.ToInt32(isCompletedCommand);
+                        countUsd += countBuyingCurrency * Convert.ToInt32(isCompletedCommand);
+                        break;
+                    case "2":
+                        Console.Write("Введите количество покупаемой валюты: ");
+                        countBuyingCurrency = Convert.ToInt32(Console.ReadLine());
+                        isCompletedCommand = countRub >= countBuyingCurrency * rubToEur;
+                        countRub -= countBuyingCurrency * rubToEur * Convert.ToInt32(isCompletedCommand);
+                        countEur += countBuyingCurrency * Convert.ToInt32(isCompletedCommand);
+                        break;
+                    case "3":
+                        Console.Write("Введите количество покупаемой валюты: ");
+                        countBuyingCurrency = Convert.ToInt32(Console.ReadLine());
+                        isCompletedCommand = countUsd >= countBuyingCurrency * usdToRub;
+                        countUsd -= countBuyingCurrency * usdToRub * Convert.ToInt32(isCompletedCommand);
+                        countRub += countBuyingCurrency * Convert.ToInt32(isCompletedCommand);
+                        break;
+                    case "4":
+                        Console.Write("Введите количество покупаемой валюты: ");
+                        countBuyingCurrency = Convert.ToInt32(Console.ReadLine());
+                        isCompletedCommand = countUsd >= countBuyingCurrency * usdToEur; 
+                        countUsd -= countBuyingCurrency * usdToEur * Convert.ToInt32(isCompletedCommand);
+                        countEur += countBuyingCurrency * Convert.ToInt32(isCompletedCommand);
+                        break;
+                    case "5":
+                        Console.Write("Введите количество покупаемой валюты: ");
+                        countBuyingCurrency = Convert.ToInt32(Console.ReadLine());
+                        isCompletedCommand = countEur >= countBuyingCurrency * eurToRub; 
+                        countEur -= countBuyingCurrency * eurToRub * Convert.ToInt32(isCompletedCommand);
+                        countRub += countBuyingCurrency * Convert.ToInt32(isCompletedCommand);
+                        break;
+                    case "6":
+                        Console.Write("Введите количество покупаемой валюты: ");
+                        countBuyingCurrency = Convert.ToInt32(Console.ReadLine());
+                        isCompletedCommand = countEur >= countBuyingCurrency * eurToUsd;
+                        countEur -= countBuyingCurrency * eurToUsd * Convert.ToInt32(isCompletedCommand);
+                        countUsd += countBuyingCurrency * Convert.ToInt32(isCompletedCommand);
+                        break;
+                    default:
+                        Console.WriteLine("Такой команды не существует");
+                        break;
                 }
             }
         }
