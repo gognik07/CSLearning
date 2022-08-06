@@ -17,7 +17,7 @@ namespace CSLight
 
             while(resultMultipleN < maxMultiple)
             {
-                if (resultMultipleN > minMultiple)
+                if (resultMultipleN >= minMultiple)
                 {
                     Console.WriteLine(resultMultipleN);
                 }
