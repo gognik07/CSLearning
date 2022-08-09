@@ -9,11 +9,11 @@ namespace CSLight
             int minN = 1;
             int maxN = 28;
             Random random = new Random();
-            int n = random.Next(minN, maxN);
-            Console.WriteLine($"N = {n}");
+            int choosedNumber = random.Next(minN, maxN);
+            Console.WriteLine($"N = {choosedNumber}");
             int minMultiple = 100;
             int maxMultiple = 1000;
-            int resultMultipleN = n;
+            int resultMultipleN = choosedNumber;
 
             while(resultMultipleN < maxMultiple)
             {
@@ -21,7 +21,7 @@ namespace CSLight
                 {
                     Console.WriteLine(resultMultipleN);
                 }
-                resultMultipleN += n;
+                resultMultipleN += choosedNumber;
             }
         }
     }
