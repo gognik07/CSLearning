@@ -11,11 +11,12 @@ namespace CSLight
             int maxNumber = 100;
             int comparedNumber = random.Next(minNumber, maxNumber);
             int powerTwo = 1;
-            int resultPowerTwo = 2;
+            int basePower = 2;
+            int resultPowerTwo = basePower;
 
             while(resultPowerTwo <= comparedNumber)
             {
-                resultPowerTwo *= 2;
+                resultPowerTwo *= basePower;
                 powerTwo++;
             }
 
