@@ -35,6 +35,7 @@ namespace CSLight
                     case "CHANGECONSOLECOLOR":
                         Console.Write("Выберите один из возможных цветов(Красный, зеленый, синий):");
                         string backgroundColor = Console.ReadLine().ToUpper();
+
                         switch (backgroundColor)
                         {
                             case "КРАСНЫЙ":
@@ -50,11 +51,13 @@ namespace CSLight
                                 Console.WriteLine("Нет такого цвета");
                                 Console.ReadKey();
                                 break;
-                        }                        
+                        }    
+                        
                         break;
                     case "CHANGETEXTCOLOR":
                         Console.Write("Выберите один из возможных цветов(Красный, зеленый, синий):");
                         string textColor = Console.ReadLine().ToUpper();
+
                         switch (textColor)
                         {
                             case "КРАСНЫЙ":
@@ -71,6 +74,7 @@ namespace CSLight
                                 Console.ReadKey();
                                 break;
                         }
+
                         break;
                     case "SETWIDTH":
                         Console.Write("Введите желаемую ширину:");
@@ -86,6 +90,7 @@ namespace CSLight
                         break;
                     case "WRITENAME":
                         Console.Write("Введите пароль:");
+
                         if (Console.ReadLine() == password)
                         {
                             Console.WriteLine(name);
@@ -94,6 +99,7 @@ namespace CSLight
                         {
                             Console.WriteLine("Неверный пароль");
                         }
+
                         Console.ReadKey();
                         break;
                     case "ESC":
