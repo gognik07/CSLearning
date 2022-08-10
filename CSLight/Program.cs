@@ -21,8 +21,9 @@ namespace CSLight
             int bossHealth = 2000;
             int bossStandartDamage = 150;
             int bossMinGain = 1;
-            int bossMaxGain = 4;
+            int bossMaxGain = 3;
             Random random = new Random();
+            int incrementRandomMax = 1;
 
             Console.WriteLine("Правила игры:\n" +
                 "Вы маг-кузнец-мечник.У вас есть 4 способности:\n" +
@@ -32,10 +33,10 @@ namespace CSLight
                 "\tSic - Ударить созданным мечом\n" +
                 "Вам нужно сразиться с боссом. Вы ходите ход за ходом." +
                 "Без меча вы не можете ударить босса. При создании нового меча предыдущий пропадает.\n" +
-                "Огненный меч поджигает врага и наносит дополнительный урон на протяжении текущего и последующих 2 ходов. Поджеги не суммируются, если боссу гореть ещё 2 хода, а вы его подожжете, то он будет гореть 3 хода, а не 5.\n" +
+                $"Огненный меч поджигает врага и наносит дополнительный урон на протяжении {maxCountBurning} ходов. Поджеги не суммируются, если боссу гореть ещё 2 хода, а вы его подожжете, то он будет гореть {maxCountBurning} хода, а не 5.\n" +
                 "Ледяной меч после удара замораживает босса.\n" +
                 "Вампирский меч часть нанесенного удара добавляет герою.\n" +
-                "Босс отвечает ударом, но может пасть в неистовство и урон будет увеличен в 2-3 раза");
+                $"Босс отвечает ударом, но может пасть в неистовство и урон будет увеличен в {bossMinGain}-{bossMaxGain} раза");
 
             while(heroHealth > 0 && bossHealth > 0)
             {
@@ -98,7 +99,7 @@ namespace CSLight
 
                 if (isFreezedBoss == false)
                 {
-                    heroHealth -= bossStandartDamage * random.Next(bossMinGain, bossMaxGain);
+                    heroHealth -= bossStandartDamage * random.Next(bossMinGain, bossMaxGain + incrementRandomMax);
                 }
                 else
                 {
