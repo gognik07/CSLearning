@@ -15,9 +15,7 @@ namespace CSLight
             bool isFreezedBoss = false;
             int minStealingLife = 30;
             int maxStealingLife = 70;
-            bool hasBurnedSword = false;
-            bool hasFreezedSword = false;
-            bool hasVimpireSword = false;
+            string ability = "";
             int bossHealth = 2000;
             int bossStandartDamage = 150;
             int bossMinGain = 1;
@@ -47,43 +45,37 @@ namespace CSLight
                 switch(heroAction)
                 {
                     case "URULOCELANGO":
-                        hasFreezedSword = false;
-                        hasVimpireSword = false;
-                        hasBurnedSword = true;
+                        ability = heroAction;
                         Console.WriteLine("Вы создали огненный меч");
                         break;
                     case "HELCALANGO":
-                        hasVimpireSword = false;
-                        hasBurnedSword = false;
-                        hasFreezedSword = true;
+                        ability = heroAction;
                         Console.WriteLine("Вы создали ледяной меч");
                         break;
-                    case "CUILELANGO":                        
-                        hasBurnedSword = false;
-                        hasFreezedSword = false;
-                        hasVimpireSword = true;
+                    case "CUILELANGO":
+                        ability = heroAction;
                         Console.WriteLine("Вы создали вампирский меч");
                         break;
                     case "SIC":
-                        if (hasBurnedSword == false && hasFreezedSword == false && hasVimpireSword == false)
+                        if(ability == "URULOCELANGO")
+                        {
+                            remainingCountBurning = maxCountBurning;
+                        }
+                        else if (ability == "HELCALANGO")
+                        {
+                            isFreezedBoss = true;
+                        }
+                        else if (ability == "CUILELANGO")
+                        {
+                            heroHealth += random.Next(minStealingLife, maxStealingLife);
+                        }
+                        else
                         {
                             Console.WriteLine("У вас нет меча для удара");
                             isCorrectAction = false;
                             break;
                         }
-                        else if (hasBurnedSword)
-                        {
-                            remainingCountBurning = maxCountBurning;
-                        } 
-                        else if (hasFreezedSword)
-                        {
-                            isFreezedBoss = true;
-                        }
-                        else
-                        {
-                            heroHealth += random.Next(minStealingLife, maxStealingLife);
-                        }
-
+                        
                         bossHealth -= heroStandartDamage;
                         break;
                     default:
