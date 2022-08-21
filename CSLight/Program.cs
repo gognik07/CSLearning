@@ -16,10 +16,19 @@ namespace CSLight
 
             for (int i = 0; i < arrayForCalculation.GetLength(0); i++)
             {
+                for (int j = 0; j < arrayForCalculation.GetLength(1); j++)
+                {
+                    Console.Write(arrayForCalculation[i, j] + " | ");
+                }
+                Console.WriteLine();
+            }
+
+            for (int i = 0; i < arrayForCalculation.GetLength(0); i++)
+            {
                 sumRow += arrayForCalculation[countRowForSum, i];
             }
 
-            Console.WriteLine($"Сумма 2-ой строки равна {sumRow}");
+            Console.WriteLine($"\nСумма 2-ой строки равна {sumRow}");
 
             int countColForMultiplication = 0;
             int multiplicationCol = 1;
