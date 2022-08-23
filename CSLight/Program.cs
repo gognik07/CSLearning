@@ -33,6 +33,7 @@ namespace CSLight
             }
 
             Console.WriteLine("\nОтсортированный массив:");
+
             for (int i = 0; i < sortedArray.GetLength(0); i++)
             {
                 Console.Write(sortedArray[i] + " | ");
