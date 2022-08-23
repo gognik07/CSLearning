@@ -21,27 +21,24 @@ namespace CSLight
 
             Console.WriteLine();
 
-            for (int i = 0; i < arrayForSearching.GetLength(0); i++)
+            if (arrayForSearching[indexFirstElement] >= arrayForSearching[indexFirstElement + 1])
             {
-                if (i == indexFirstElement)
+                Console.WriteLine($"Локальный максимум {arrayForSearching[indexFirstElement]} в позиции {indexFirstElement}");
+            }
+            
+            for (int i = 1; i < arrayForSearching.GetLength(0) - 1; i++)
+            {
+
+                if (arrayForSearching[i] >= arrayForSearching[i + 1] && arrayForSearching[i] >= arrayForSearching[i - 1])
                 {
-                    if (arrayForSearching[i] >= arrayForSearching[i + 1])
-                    {
-                        Console.WriteLine($"Локальный максимум {arrayForSearching[i]} в позиции {i}");
-                    }
-                } else if (i == indexLastElement)
-                {
-                    if (arrayForSearching[i] >= arrayForSearching[i - 1])
-                    {
-                        Console.WriteLine($"Локальный максимум {arrayForSearching[i]} в позиции {i}");
-                    }
-                } else
-                {
-                    if (arrayForSearching[i] >= arrayForSearching[i + 1] && arrayForSearching[i] >= arrayForSearching[i - 1])
-                    {
-                        Console.WriteLine($"Локальный максимум {arrayForSearching[i]} в позиции {i}");
-                    }
+                    Console.WriteLine($"Локальный максимум {arrayForSearching[i]} в позиции {i}");
                 }
+
+            }
+           
+            if (arrayForSearching[indexLastElement] >= arrayForSearching[indexLastElement - 1])
+            {
+                Console.WriteLine($"Локальный максимум {arrayForSearching[indexLastElement]} в позиции {indexLastElement}");
             }
         }
     }
