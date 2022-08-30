@@ -138,7 +138,6 @@ namespace CSLight
 
             temporaryFullNames[temporaryFullNames.Length - 1] = fullName;
             temporaryWorkingPositions[temporaryWorkingPositions.Length - 1] = workingPosition;
-
             fullNames = temporaryFullNames;
             workingPositions = temporaryWorkingPositions;
         }
