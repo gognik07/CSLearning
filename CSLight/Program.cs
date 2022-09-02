@@ -9,8 +9,13 @@ namespace CSLight
             string[] fullNames = new string[0];
             string[] workingPositions = new string[0];
             bool isWorked = true;
+            const string COMMAND_ADD = "1";
+            const string COMMAND_PRINT = "2";
+            const string COMMAND_DELETE = "3";
+            const string COMMAND_FIND = "4";
+            const string COMMAND_EXIT = "5";
 
-            while(isWorked)
+            while (isWorked)
             {
                 Console.WriteLine("Доступные команду:" +
                     "\n 1 - Добавить досье" +
@@ -23,26 +28,19 @@ namespace CSLight
 
                 switch(commandNumber)
                 {
-                    case "1":
-                        addDossier(ref fullNames, ref workingPositions);
-                        Console.Clear();
+                    case COMMAND_ADD:
+                        AddDossier(ref fullNames, ref workingPositions);                        
                         break;
-                    case "2":
-                        printDossiers(fullNames, workingPositions);
-                        Console.ReadKey();
-                        Console.Clear();
+                    case COMMAND_PRINT:
+                        PrintDossiers(fullNames, workingPositions);                        
                         break;
-                    case "3":
-                        deleteDossier(ref fullNames, ref workingPositions);
-                        Console.ReadKey();
-                        Console.Clear();
+                    case COMMAND_DELETE:
+                        DeleteDossier(ref fullNames, ref workingPositions);                        
                         break;
-                    case "4":
-                        findDossier(fullNames, workingPositions);
-                        Console.ReadKey();
-                        Console.Clear();
+                    case COMMAND_FIND:
+                        FindDossier(fullNames, workingPositions);                        
                         break;
-                    case "5":
+                    case COMMAND_EXIT:
                         isWorked = false;
                         break;
                     default:
@@ -54,7 +52,7 @@ namespace CSLight
             }
         }
 
-        private static void deleteDossier(ref string[] fullNames, ref string[] workingPositions)
+        private static void DeleteDossier(ref string[] fullNames, ref string[] workingPositions)
         {
             Console.Write("Введите номер удаляемого досье: ");
             int numberDossier = Convert.ToInt32(Console.ReadLine());
@@ -65,27 +63,35 @@ namespace CSLight
             }
             else
             {
-                string[] temporaryFullNames = new string[fullNames.Length - 1];
-                string[] temporaryWorkingPositions = new string[workingPositions.Length - 1];
-                int currentTemporaryPosition = 0;
-
-                for(int i = 0; i < fullNames.Length; i++)
-                {
-                    if(i != numberDossier - 1)
-                    {
-                        temporaryFullNames[currentTemporaryPosition] = fullNames[i];
-                        temporaryWorkingPositions[currentTemporaryPosition] = workingPositions[i];
-                        currentTemporaryPosition++;
-                    }
-                }
-
-                fullNames = temporaryFullNames;
-                workingPositions = temporaryWorkingPositions;
-                Console.WriteLine("Досье удалено");
+                fullNames[numberDossier - 1] = null;
+                workingPositions[numberDossier - 1] = null;
+                NarrowArray(ref fullNames);
+                NarrowArray(ref workingPositions);
+                Console.WriteLine("Досье удалено");                
             }
+
+            Console.ReadKey();
+            Console.Clear();
         }
 
-        private static void findDossier(string[] fullNames, string[] workingPositions)
+        static void NarrowArray(ref string[] arrayForNarrowing)
+        {
+            string[] tempArray = new string[arrayForNarrowing.Length - 1];
+            int currentTemporaryPosition = 0;
+
+            for(int i = 0; i < arrayForNarrowing.Length; i++)
+            {
+                if (arrayForNarrowing[i] != null)
+                {
+                    tempArray[currentTemporaryPosition] = arrayForNarrowing[i];
+                    currentTemporaryPosition++;
+                }
+            }
+
+            arrayForNarrowing = tempArray;
+        }
+
+        private static void FindDossier(string[] fullNames, string[] workingPositions)
         {
             Console.Write("Введите фамилию для поиска: ");
             string lastname = Console.ReadLine();
@@ -106,40 +112,53 @@ namespace CSLight
             {
                 Console.WriteLine("Досье с такой фамилией не найдено");
             }
+
+            Console.ReadKey();
+            Console.Clear();
         }
 
-        static void printDossiers(string[] fullNames, string[] workingPositions)
+        static void PrintDossiers(string[] fullNames, string[] workingPositions)
         {
             if(fullNames.Length == 0)
             {
                 Console.WriteLine("Список с досье пуст");
+            } 
+            else
+            {
+                for (int i = 0; i < fullNames.Length; i++)
+                {
+                    Console.WriteLine($"{i + 1} - {fullNames[i]} - {workingPositions[i]}");
+                }
             }
 
-            for(int i = 0; i < fullNames.Length; i++)
-            {
-                Console.WriteLine($"{i + 1} - {fullNames[i]} - {workingPositions[i]}");
-            }
+            Console.ReadKey();
+            Console.Clear();
         }
 
-        static void addDossier(ref string[] fullNames, ref string[] workingPositions)
+        static void AddDossier(ref string[] fullNames, ref string[] workingPositions)
         {
             Console.Write("Введите ФИО: ");
             string fullName = Console.ReadLine();
             Console.Write("Введите должность: ");
             string workingPosition = Console.ReadLine();
-            string[] temporaryFullNames = new string[fullNames.Length + 1];
-            string[] temporaryWorkingPositions = new string[workingPositions.Length + 1];
+            ExpandArray(ref fullNames);
+            ExpandArray(ref workingPositions);
 
-            for(int i = 0; i < fullNames.Length; i++)
+            fullNames[fullNames.Length - 1] = fullName;
+            workingPositions[workingPositions.Length - 1] = workingPosition;            
+            Console.Clear();
+        }
+
+        static void ExpandArray(ref string[] arrayForExpanding)
+        {
+            string[] tempArray = new string[arrayForExpanding.Length + 1];
+
+            for (int i = 0; i < arrayForExpanding.Length; i++)
             {
-                temporaryFullNames[i] = fullNames[i];
-                temporaryWorkingPositions[i] = workingPositions[i];
+                tempArray[i] = arrayForExpanding[i];
             }
 
-            temporaryFullNames[temporaryFullNames.Length - 1] = fullName;
-            temporaryWorkingPositions[temporaryWorkingPositions.Length - 1] = workingPosition;
-            fullNames = temporaryFullNames;
-            workingPositions = temporaryWorkingPositions;
+            arrayForExpanding = tempArray;
         }
     }
 }
