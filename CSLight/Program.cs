@@ -6,14 +6,14 @@ namespace CSLight
     {
         static void Main(string[] args)
         {
+            const string CommandAdd = "1";
+            const string CommandPrint = "2";
+            const string CommandDelete = "3";
+            const string CommandFind = "4";
+            const string CommandExit = "5";
             string[] fullNames = new string[0];
             string[] workingPositions = new string[0];
-            bool isWorked = true;
-            const string COMMAND_ADD = "1";
-            const string COMMAND_PRINT = "2";
-            const string COMMAND_DELETE = "3";
-            const string COMMAND_FIND = "4";
-            const string COMMAND_EXIT = "5";
+            bool isWorked = true;            
 
             while (isWorked)
             {
@@ -28,19 +28,19 @@ namespace CSLight
 
                 switch(commandNumber)
                 {
-                    case COMMAND_ADD:
+                    case CommandAdd:
                         AddDossier(ref fullNames, ref workingPositions);                        
                         break;
-                    case COMMAND_PRINT:
+                    case CommandPrint:
                         PrintDossiers(fullNames, workingPositions);                        
                         break;
-                    case COMMAND_DELETE:
+                    case CommandDelete:
                         DeleteDossier(ref fullNames, ref workingPositions);                        
                         break;
-                    case COMMAND_FIND:
+                    case CommandFind:
                         FindDossier(fullNames, workingPositions);                        
                         break;
-                    case COMMAND_EXIT:
+                    case CommandExit:
                         isWorked = false;
                         break;
                     default:
