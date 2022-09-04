@@ -6,10 +6,10 @@ namespace CSLight
     {
         static void Main(string[] args)
         {
-            ReadInt();
+            Console.WriteLine(ReadInt());
         }
 
-        private static void ReadInt()
+        private static int ReadInt()
         {
             bool isCorrectNumber = false;
             int inputNumber = 0;
@@ -20,7 +20,7 @@ namespace CSLight
                 isCorrectNumber = int.TryParse(Console.ReadLine(), out inputNumber);
             }
 
-            Console.WriteLine("Введено число: " + inputNumber);
+            return inputNumber;
         }
     }
 }
