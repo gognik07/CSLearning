@@ -22,8 +22,10 @@ namespace CSLight
         {
             int fullSpace = 10;
             char emptySymbol = '_';
+            int maxPercents = 100;
+            int minPercents = 0;
 
-            if (percentFilling < 0 || percentFilling > 100)
+            if (percentFilling < minPercents || percentFilling > maxPercents)
             {
                 Console.WriteLine("Некорректное количество процентов");
             }
