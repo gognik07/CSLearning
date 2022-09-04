@@ -45,10 +45,7 @@ namespace CSLight
                 }
 
                 Console.Write("]");
-            }
-            
-            
-            
+            }  
         }
     }
 }
