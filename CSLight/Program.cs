@@ -9,11 +9,11 @@ namespace CSLight
             int sizeArray = 10;
             int[] arrayForMixing = CreateRandomArray(sizeArray);
             PrintArray(arrayForMixing);
-            Shuffle(ref arrayForMixing);
+            Shuffle(arrayForMixing);
             PrintArray(arrayForMixing);
         }
 
-        private static void Shuffle(ref int[] array)
+        private static void Shuffle(int[] array)
         {
             Random random = new Random();
             int firstIndexArray = 0;
@@ -21,11 +21,11 @@ namespace CSLight
 
             for(int i = 0; i < array.Length; i++)
             {
-                ChangePlaceElements(ref array, i, random.Next(firstIndexArray, lastIndexArray));
+                ChangePlaceElements(array, i, random.Next(firstIndexArray, lastIndexArray));
             }
         }
 
-        private static void ChangePlaceElements(ref int[] array, int firstIndexForChanging, int secondIndexForChanging)
+        private static void ChangePlaceElements(int[] array, int firstIndexForChanging, int secondIndexForChanging)
         {
             int storageForFirstElement = array[firstIndexForChanging];
             array[firstIndexForChanging] = array[secondIndexForChanging];
