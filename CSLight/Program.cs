@@ -12,11 +12,12 @@ namespace CSLight
             char sympolFencing = '#';
             char symbolTreasure = 'X';
             char symbolTakenTreasure = 'O';
+            string pathMap = "maps/map.txt";
             char[] bag = new char[0];
             int heroX, heroY;
 
             Console.CursorVisible = false;
-            char[,] map = ReadMap("map.txt", out heroX, out heroY, symbolHero);
+            char[,] map = ReadMap(pathMap, out heroX, out heroY, symbolHero);
             
             while (isPlaying)
             {
@@ -78,15 +79,14 @@ namespace CSLight
             }
 
             if (map[heroX, heroY] == symbolTreasure)
-            {
-                map[heroX, heroY] = symbolTakenTreasure;
-
-                addTreasureInBag(ref bag, symbolTreasure);
+            {                
+                addTreasureInBag(map, heroX, heroY, ref bag, symbolTreasure, symbolTakenTreasure);
             }
         }
 
-        private static void addTreasureInBag(ref char[] bag, char symbolTreasure)
+        private static void addTreasureInBag(char[,] map, int heroX, int heroY, ref char[] bag, char symbolTreasure, char symbolTakenTreasure)
         {
+            map[heroX, heroY] = symbolTakenTreasure;
             char[] tempBag = new Char[bag.Length + 1];
 
             for(int i = 0; i < bag.Length; i++)
@@ -117,7 +117,7 @@ namespace CSLight
             heroX = 0;
             heroY = 0;
 
-            string[] fileStrings = File.ReadAllLines($"maps/{pathMapFile}");
+            string[] fileStrings = File.ReadAllLines(pathMapFile);
             char[,] map = new char[fileStrings.Length, fileStrings[0].Length];
 
             for(int i = 0; i < map.GetLength(0); i++)
