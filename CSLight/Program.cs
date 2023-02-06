@@ -14,17 +14,18 @@ namespace CSLight
             char symbolTakenTreasure = 'O';
             string pathMap = "maps/map.txt";
             char[] bag = new char[0];
-            int heroX, heroY;
+            int heroPositionX;
+            int heroPositionY;
 
             Console.CursorVisible = false;
-            char[,] map = ReadMap(pathMap, out heroX, out heroY, symbolHero);
+            char[,] map = ReadMap(pathMap, out heroPositionX, out heroPositionY, symbolHero);
             
             while (isPlaying)
             {
                 DrawBag(bag);
                 DrawMap(map);
-                DrawHero(heroY, heroX, symbolHero);                
-                MoveHero(map, ref heroX, ref heroY, ref bag, sympolFencing, symbolTreasure, symbolTakenTreasure);                
+                DrawHero(heroPositionY, heroPositionX, symbolHero);                
+                MoveHero(map, ref heroPositionX, ref heroPositionY, ref bag, sympolFencing, symbolTreasure, symbolTakenTreasure);                
                 Console.Clear();
             }
         }
@@ -40,53 +41,56 @@ namespace CSLight
             }
         }
 
-        private static void DrawHero(int heroY, int heroX, char symbolHero)
+        private static void DrawHero(int heroPositionY, int heroPositionX, char symbolHero)
         {
-            Console.SetCursorPosition(heroY, heroX);
+            Console.SetCursorPosition(heroPositionY, heroPositionX);
             Console.Write(symbolHero);
         }
 
-        private static void MoveHero(char[,] map, ref int heroX, ref int heroY, ref char[] bag, char sympolFencing, char symbolTreasure, char symbolTakenTreasure)
+        private static void MoveHero(char[,] map, ref int heroPositionX, ref int heroPositionY, ref char[] bag, char sympolFencing, char symbolTreasure, char symbolTakenTreasure)
         {
             ConsoleKeyInfo charKey = Console.ReadKey(true);
 
             switch (charKey.Key)
             {
                 case ConsoleKey.UpArrow:
-                    if (map[heroX - 1, heroY] != sympolFencing)
+                    if (map[heroPositionX - 1, heroPositionY] != sympolFencing)
                     {
-                        heroX--;
+                        heroPositionX--;
                     }
                     break;
+
                 case ConsoleKey.DownArrow:
-                    if (map[heroX + 1, heroY] != sympolFencing)
+                    if (map[heroPositionX + 1, heroPositionY] != sympolFencing)
                     {
-                        heroX++;
+                        heroPositionX++;
                     }
                     break;
+
                 case ConsoleKey.LeftArrow:
-                    if (map[heroX, heroY - 1] != sympolFencing)
+                    if (map[heroPositionX, heroPositionY - 1] != sympolFencing)
                     {
-                        heroY--;
+                        heroPositionY--;
                     }
                     break;
+
                 case ConsoleKey.RightArrow:
-                    if (map[heroX, heroY + 1] != sympolFencing)
+                    if (map[heroPositionX, heroPositionY + 1] != sympolFencing)
                     {
-                        heroY++;
+                        heroPositionY++;
                     }
                     break;
             }
 
-            if (map[heroX, heroY] == symbolTreasure)
+            if (map[heroPositionX, heroPositionY] == symbolTreasure)
             {                
-                addTreasureInBag(map, heroX, heroY, ref bag, symbolTreasure, symbolTakenTreasure);
+                AddTreasureInBag(map, heroPositionX, heroPositionY, ref bag, symbolTreasure, symbolTakenTreasure);
             }
         }
 
-        private static void addTreasureInBag(char[,] map, int heroX, int heroY, ref char[] bag, char symbolTreasure, char symbolTakenTreasure)
+        private static void AddTreasureInBag(char[,] map, int heroPositionX, int heroPositionY, ref char[] bag, char symbolTreasure, char symbolTakenTreasure)
         {
-            map[heroX, heroY] = symbolTakenTreasure;
+            map[heroPositionX, heroPositionY] = symbolTakenTreasure;
             char[] tempBag = new Char[bag.Length + 1];
 
             for(int i = 0; i < bag.Length; i++)
@@ -112,10 +116,10 @@ namespace CSLight
             }
         }
 
-        static char[,] ReadMap(string pathMapFile, out int heroX, out int heroY, char symbolHero)
+        static char[,] ReadMap(string pathMapFile, out int heroPositionX, out int heroPositionY, char symbolHero)
         {
-            heroX = 0;
-            heroY = 0;
+            heroPositionX = 0;
+            heroPositionY = 0;
 
             string[] fileStrings = File.ReadAllLines(pathMapFile);
             char[,] map = new char[fileStrings.Length, fileStrings[0].Length];
@@ -128,8 +132,8 @@ namespace CSLight
 
                     if(map[i, j] == symbolHero)
                     {
-                        heroX = i;
-                        heroY = j;
+                        heroPositionX = i;
+                        heroPositionY = j;
                         map[i, j] = ' ';
                     }
                 }
