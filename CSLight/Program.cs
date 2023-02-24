@@ -45,13 +45,14 @@ namespace CSLight
             int maxSumBucket = 800;
             Random random = new Random();
             Queue<int> productBuckets = new Queue<int>();
-
             int countClients = random.Next(minClients, maxClients);
+
             for(int i = 0; i < countClients; i++)
             {
                 int sumBucketForClient = random.Next(minSumBucket, maxSumBucket);
                 productBuckets.Enqueue(sumBucketForClient);
             }
+
             return productBuckets;
         }
     }
