@@ -29,12 +29,12 @@ namespace CSLight
         private static List<string> UnionLists(List<string> firstList, List<string> secondList)
         {
             List<string> unionedList = new List<string>();
-            AddUniqueValuesFromList(ref unionedList, firstList);
-            AddUniqueValuesFromList(ref unionedList, secondList);
+            AddUniqueValuesFromList(unionedList, firstList);
+            AddUniqueValuesFromList(unionedList, secondList);
             return unionedList;
         }
 
-        private static void AddUniqueValuesFromList(ref List<string> finalList, List<string> addedList)
+        private static void AddUniqueValuesFromList(List<string> finalList, List<string> addedList)
         {
             foreach(string value in addedList)
             {
