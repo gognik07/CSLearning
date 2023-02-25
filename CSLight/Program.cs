@@ -27,13 +27,13 @@ namespace CSLight
                 switch(commandNumber)
                 {
                     case CommandAdd:
-                        AddDossier(ref accountings);                        
+                        AddDossier(accountings);                        
                         break;
                     case CommandPrint:
                         PrintDossiers(accountings);                        
                         break;
                     case CommandDelete:
-                        DeleteDossier(ref accountings);                        
+                        DeleteDossier(accountings);                        
                         break;
                     case CommandExit:
                         isWorked = false;
@@ -47,19 +47,18 @@ namespace CSLight
             }
         }
 
-        private static void DeleteDossier(ref Dictionary<string, string> accountings)
+        private static void DeleteDossier(Dictionary<string, string> accountings)
         {
             Console.Write("Введите имя удаляемого досье: ");
             string fullName = Console.ReadLine();
 
-            if(accountings.ContainsKey(fullName) == false)
+            if(accountings.Remove(fullName))
             {
-                Console.WriteLine("Досье с таким именем не существует");
+                Console.WriteLine("Досье удалено");
             }
             else
-            {
-                accountings.Remove(fullName);
-                Console.WriteLine("Досье удалено");                
+            {                
+                Console.WriteLine("Досье с таким именем не существует");                
             }
 
             Console.ReadKey();
@@ -84,14 +83,23 @@ namespace CSLight
             Console.Clear();
         }
 
-        static void AddDossier(ref Dictionary<string, string> accountings)
+        static void AddDossier(Dictionary<string, string> accountings)
         {
             Console.Write("Введите ФИО: ");
             string fullName = Console.ReadLine();
-            Console.Write("Введите должность: ");
-            string workingPosition = Console.ReadLine();
-            accountings.Add(fullName, workingPosition);            
-            Console.Clear();
+            if (accountings.ContainsKey(fullName))
+            {
+                Console.WriteLine("Такое ФИО уже существует!");
+                Console.ReadKey();
+                Console.Clear();
+            }
+            else
+            {
+                Console.Write("Введите должность: ");
+                string workingPosition = Console.ReadLine();
+                accountings.Add(fullName, workingPosition);
+                Console.Clear();
+            }
         }
     }
 }
